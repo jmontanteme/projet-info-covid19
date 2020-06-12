@@ -1,0 +1,33 @@
+body{
+    font-size: 20px;
+    background-image : url("./fond2.jpg");   
+    color : rgba(245, 245, 245, 0.781);
+    
+    margin-left: 10%;
+    margin-right: auto;
+}
+
+/* pour insérer une ligne, un saut de ligne plutot*/
+.hline { width:100%; height:5px }
+
+.header{
+    font-size : 30px;
+}
+
+.search_box{
+    display:grid;    
+    grid-template-columns: 80% auto;
+}
+
+
+.input{        
+    width: 90%;
+    border: 5px solid green;
+    padding: 25px;
+    margin: 20 px;
+
+    color: black;
+    
+    background-color : whitesmoke;
+    opacity : 0.5;
+}
