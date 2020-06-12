@@ -19,7 +19,6 @@ body{
     grid-template-columns: 80% auto;
 }
 
-
 .input{        
     width: 90%;
     border: 5px solid green;
@@ -30,4 +29,16 @@ body{
     
     background-color : whitesmoke;
     opacity : 0.5;
+}
+
+
+.answers{
+    display : grid;
+    grid-template-rows : 100px 100px 100px 100px 100px;
+}
+
+.footer{
+    color : white;
+
+    
 }
