@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CORD19 - {{article[1]}}</title>
+  </head>
+  <body>
+    
+    <hr>
+        <h1> {{article[1]}} </h1>
+        
+        <p>Date : {{article[6]}}</p>
+        <p>Note : {{article[13]}}</p>
+        <p>Abstract :</p>
+        <p>{{article[2]}}</p>
+        
+        {% if full%}
+          <p> Texte complet :</p> 
+          <p>{{text}}</p>
+        {%endif%}
+        <a href="/">Home</a> 
+  </body>
+</html>

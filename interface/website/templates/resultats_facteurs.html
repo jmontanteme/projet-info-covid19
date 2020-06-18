@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CORD19</title>
+  </head>
+  <body>
+    
+    <hr>
+        <h1> Résultats </h1>
+        <p>Vous avez recherché :</p>
+
+        {% for x in factors %}
+        <div> {{x}}</div> 
+        {% endfor %}
+
+        <a href="/">Home</a> 
+  </body>
+</html>   

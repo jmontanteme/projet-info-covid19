@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CORD19</title>
+  </head>
+  <body>
+    
+    <hr>
+        <h1> Facteurs de risque </h1>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.select.label }}<br>
+                {{ form.select(size=32) }}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </form>
+  </body>
+</html>
