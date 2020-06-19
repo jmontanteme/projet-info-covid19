@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CORD19</title>
+  </head>
+  <body>
+    
+    <hr>
+        <h1> Menu </h1>
+        <form>
+            <input type="button" value="Recherche par mots-clés" onclick="window.location.href='{{url_for('search')}}'" />
+        </form> 
+
+        <form>
+            <input type="button" value="Facteurs de risque" onclick="window.location.href='{{url_for('search_facteur')}}'" />
+        </form> 
+  </body>
+</html>
