@@ -3,17 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>CORD19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
   </head>
   <body>
     
-    <hr>
-        <h1> Résultats </h1>
-        <p>Vous avez recherché :</p>
+    <div class="text3">
+      <div class="header"> Résultats </div>
 
+      <div class="resultats">
+        <p class= "text_rs">Vous avez recherché :</p>
         {% for x in factors %}
-        <div> {{x}}</div> 
+          <div class="text_rs"> {{x}}</div> 
         {% endfor %}
+      </div>
 
-        <a href="/">Home</a> 
+    </div>
+
+    <a class="footer" href="/">Menu</a> 
   </body>
 </html>   

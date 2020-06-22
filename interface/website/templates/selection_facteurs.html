@@ -3,18 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title>CORD19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
   </head>
   <body>
     
-    <hr>
-        <h1> Facteurs de risque </h1>
-        <form action="" method="post" novalidate>
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.select.label }}<br>
-                {{ form.select(size=32) }}
-            </p>
-            <p>{{ form.submit() }}</p>
-        </form>
+    <div class="text2">
+        <div class="header"> Facteurs de risque </div>
+          <form class="search_box" action="" method="post" novalidate>
+              <p class="text_sb">Facteurs de risque à rechercher :</p>
+              
+              <p class="barre">
+                {{ form.hidden_tag() }}
+                  {{ form.select(size=32) }}
+              </p>
+              <p class="rechercher">{{ form.submit() }}</p>
+          </form>
+        </div>
+
+        <a class="footer" href="/">Menu</a>
+
+
   </body>
 </html>

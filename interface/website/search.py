@@ -5,24 +5,41 @@ import json
 from fonctions import *
 
 meta_df=pd.read_csv("metadata_processed.csv")
+meta_df2=pd.read_csv("metadata_processed_reduced.csv")
 
 def fonction_search(keywords):
     give_note(meta_df,keywords)
-    top=meta_df.sort_values(by=["note"],ascending=False)[0:5].values.tolist()    
-    return top
+    top=meta_df.sort_values(by=["note"],ascending=False)[0:5].values.tolist()   
+    list_full=[True for i in range(5)] 
+    for i in range(5):
+        if str(top[i][7])=="nan":
+            list_full[i]=False
+    return top,list_full
+
+def search_factors(factors):#factors est une liste
+    give_note_factor(meta_df2,factors)
+    top=meta_df2.sort_values(by=["note_totale"],ascending=False)[0:5].values.tolist()   
+    list_full=[True for i in range(5)] 
+    for i in range(5):
+        if str(top[i][7])=="nan":
+            list_full[i]=False
+    return top,list_full
 
 def get_article(n_article):
     article=meta_df.loc[n_article]
     path=article[7]
-    try:
-        if np.isnan(path):
+    if str(path)=="nan":
             full=False
             text=""
-    except TypeError:
+            l_article=[]
+            biblio=dict()
+    else:
         full=True
-        article_json=open_article(path)
-        text=make_text(article_json)
-    return article,full,text
+        article_full=open_article(path)
+        biblio=article_full["bib_entries"]
+        l_article=make_article(path)         
+
+    return article,full,l_article,biblio
 
 
 #les articles sont décrits sous la forme :
@@ -40,3 +57,29 @@ def get_article(n_article):
 # 11 freq_title 	
 # 12 freq_abstract 	
 # 13 note
+"""
+article,full,l_article,biblio=get_article(59825)
+
+print(l_article)
+
+
+<p class="subtitle"> Texte complet :</p> 
+            {%for p in article_full["body_text"]%}
+              <p class="full_text">{{p["text"]}}</p>
+              {%for c in p["cite_spans"] %}
+                
+                <div class="cite">
+                  <p class="ref_title">{{ bib[c["ref_id"]]["title"] }} </p>
+                  <div>{%for aut in bib[c["ref_id"]]["authors"] %}
+                    {{aut["first"]}} {{aut["last"]}}, 
+                  {%endfor%}</div>
+                  <div>{{bib[c["ref_id"]]["year"]}}</div>
+                  <div>{{bib[c["ref_id"]]["venue"]}}, {{bib[c["ref_id"]]["volume"]}},p {{bib[c["ref_id"]]["pages"]}}</div>
+                  <div>PMID : {{bib[c["ref_id"]]["other_ids"]["PMID"]}}</div>
+                  <div>DOI : {{bib[c["ref_id"]]["other_ids"]["DOI"]}}</div>
+                </div>
+              {%endfor%}
+              
+            {%endfor%}
+
+"""
