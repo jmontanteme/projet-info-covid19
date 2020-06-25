@@ -3,17 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title>CORD19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
   </head>
   <body>
-    
-    <hr>
-        <h1> Menu </h1>
-        <form>
-            <input type="button" value="Recherche par mots-clés" onclick="window.location.href='{{url_for('search')}}'" />
-        </form> 
+    <div class="text">
 
-        <form>
-            <input type="button" value="Facteurs de risque" onclick="window.location.href='{{url_for('search_facteur')}}'" />
-        </form> 
+        <div class= "header"> MENU </div>
+
+      
+        <div class="box-1">
+          <form >
+              <input class="button1" type="button" value="Recherche par mots-clés" onclick="window.location.href='{{url_for('search')}}'" />
+          </form> 
+        </div>
+
+        <div class="box-2">
+          <form >
+              <input class = "button1" type="button" value="Facteurs de risque" onclick="window.location.href='{{url_for('search_facteur')}}'" />
+          </form> 
+        </div>
+
+        <div class="footer">
+          Juliette, Alex, Arnaud et Augustin 
+        </div>
+
+      </div>
   </body>
 </html>

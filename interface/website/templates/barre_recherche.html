@@ -3,18 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>CORD19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
   </head>
   <body>
     
-    <hr>
-        <h1> Moteur de recherche </h1>
-        <form action="" method="post" novalidate>
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.keywords.label }}<br>
-                {{ form.keywords(size=32) }}
-            </p>
-            <p>{{ form.submit() }}</p>
-        </form>
+    <div class="text2">
+        <div class="header"> Moteur de recherche </div>
+
+        <div class="search_box">
+          <form class="input" action="" method="post" novalidate>
+              {{ form.hidden_tag() }}
+              <p class="text_sb">Mots-clés à rechercher dans la base de donnée :</p>
+              <p class="barre">
+                  {{ form.keywords(size=32) }}
+              </p>
+              <p class="rechercher">{{ form.submit() }}</p>
+          </form>
+
+        <a class="footer" href="/">Menu</a>
+      </div>
+
+    </div>
   </body>
 </html>

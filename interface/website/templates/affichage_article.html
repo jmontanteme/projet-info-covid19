@@ -3,21 +3,76 @@
   <head>
     <meta charset="utf-8">
     <title>CORD19 - {{article[1]}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
   </head>
   <body>
     
-    <hr>
-        <h1> {{article[1]}} </h1>
+    <div class="text4">
+        <p class="title"> {{article[1]}} </p>
+
+
+        <div class="sug"> 
+          <p class="subtitle">Textes similaires :</p>
+          {% for i in range(5) %}
+                <a class=link href="{{url_for('aff_article', n_article=suggestions[i][0])}}" >{{ suggestions[i][1] }}</a>
+                <p class="details">{{suggestions[i][6]}},{{suggestions[i][3]}}</p>
+                <p class="details">Texte complet : {% if list_full[i] %} Oui {% else %} Non {% endif %}</p>
+          {% endfor %}
+
+        </div>
+
+
+
+
+        <div class="text_aff">
         
-        <p>Date : {{article[6]}}</p>
-        <p>Note : {{article[13]}}</p>
-        <p>Abstract :</p>
-        <p>{{article[2]}}</p>
+          <p class="subtitle">Date : {{article[6]}}</p>
+          <p class="subtitle">Note : {{article[13]}}</p>
+          <p class="subtitle" >Abstract :</p>
+          <p class="full_text">{{article[2]}}</p>
+          
+          {% if full%}
+            <p class="subtitle">Texte complet</p>
+              {% for p in l_article%}
+                <div class="full_text">{{p[0]}}</div>
+                {% for cit in p[1]%}
+                  <div class="cite">
+                    <div class="ref_title">{{cit[0]}}</div>
+                    <div>{{cit[1]}}</div>
+                    <div>{{cit[2]}}</div>
+                    <div>{{cit[3]}},{{cit[4]}},p {{cit[5]}}</div>
+                    <div>PMID : {{cit[6]}}</div>
+                    <div>DOI : {{cit[7]}}</div>
+                  </div>
+                {%endfor%}
+                <div></div>
+
+              {%endfor%}
+            
+
+            <div class="bib">
+              <p class="subtitle">Bibliographie :</p>
+              
+              {% for article_ref in bib.keys()%}
+                        
+                <p class="ref_title">{{bib[article_ref]["title"]}} </p>
+                <div>{%for aut in bib[article_ref]["authors"] %}
+                  {{aut["first"]}} {{aut["last"]}}, 
+                {%endfor%}</div>
+                <div>{{bib[article_ref]["year"]}}</div>
+                <div>{{bib[article_ref]["venue"]}}, {{bib[article_ref]["volume"]}},p {{bib[article_ref]["pages"]}}</div>
+                <div>PMID : {{bib[article_ref]["other_ids"]["PMID"]}}</div>
+                <div>DOI : {{bib[article_ref]["other_ids"]["DOI"]}}</div>
+                
+              {%endfor%}
+
+          {%endif%}
+        </div>
+
+
+    </div>
         
-        {% if full%}
-          <p> Texte complet :</p> 
-          <p>{{text}}</p>
-        {%endif%}
-        <a href="/">Home</a> 
-  </body>
+      <a class="footer" href="/">Menu</a> 
+    </div>
+  </body> 
 </html>
