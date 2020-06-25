@@ -1,7 +1,7 @@
 from flask import Flask, render_template, flash, redirect, url_for
 from form import SearchBar,Factor_selection
 from flask_wtf.csrf import CSRFProtect
-from search import fonction_search,get_article,search_factors
+from search import fonction_search,get_article,search_factors,get_suggestion
 
 app = Flask(__name__)
 
@@ -38,7 +38,12 @@ def search_facteur():
 @app.route("/affichage/<int:n_article>")
 def aff_article(n_article):
     article,full,l_article,biblio=get_article(n_article)
-    return render_template("affichage_article.html",article=article,full=full,l_article=l_article,bib=biblio)
+    #suggestions,list_full=get_suggestion(n_article)
+    
+    sugg_defaut,_,_,_=get_article(0) 
+    suggestions=[sugg_defaut for i in range(5)]
+    list_full=[True for i in range(5)] 
+    return render_template("affichage_article.html",article=article,full=full,l_article=l_article,bib=biblio,suggestions=suggestions,list_full=list_full)
 
 
 if __name__ == "__main__":

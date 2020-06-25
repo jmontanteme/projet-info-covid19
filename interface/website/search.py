@@ -7,6 +7,8 @@ from fonctions import *
 meta_df=pd.read_csv("metadata_processed.csv")
 meta_df2=pd.read_csv("metadata_processed_reduced.csv")
 
+
+
 def fonction_search(keywords):
     give_note(meta_df,keywords)
     top=meta_df.sort_values(by=["note"],ascending=False)[0:5].values.tolist()   
@@ -28,6 +30,7 @@ def search_factors(factors):#factors est une liste
 def get_article(n_article):
     article=meta_df.loc[n_article]
     path=article[7]
+    print(f"path={path}")
     if str(path)=="nan":
             full=False
             text=""
@@ -41,6 +44,17 @@ def get_article(n_article):
 
     return article,full,l_article,biblio
 
+
+def get_suggestion(n_article):
+    article=meta_df.loc[n_article]
+    cluster=article["cluster"]
+    meta_df_cluster=meta_df.loc[meta_df["cluster"]==cluster]
+    suggestions=meta_df_cluster.sort_values(by=["note_ref"],ascending=False)[0:10].values.tolist()
+    list_full=[True for i in range(5)] 
+    for i in range(5):
+        if str(suggestions[i][7])=="nan":
+            list_full[i]=False
+    return suggestions,list_full
 
 #les articles sont décrits sous la forme :
 # 0 numéro article (inutile)
@@ -61,25 +75,5 @@ def get_article(n_article):
 article,full,l_article,biblio=get_article(59825)
 
 print(l_article)
-
-
-<p class="subtitle"> Texte complet :</p> 
-            {%for p in article_full["body_text"]%}
-              <p class="full_text">{{p["text"]}}</p>
-              {%for c in p["cite_spans"] %}
-                
-                <div class="cite">
-                  <p class="ref_title">{{ bib[c["ref_id"]]["title"] }} </p>
-                  <div>{%for aut in bib[c["ref_id"]]["authors"] %}
-                    {{aut["first"]}} {{aut["last"]}}, 
-                  {%endfor%}</div>
-                  <div>{{bib[c["ref_id"]]["year"]}}</div>
-                  <div>{{bib[c["ref_id"]]["venue"]}}, {{bib[c["ref_id"]]["volume"]}},p {{bib[c["ref_id"]]["pages"]}}</div>
-                  <div>PMID : {{bib[c["ref_id"]]["other_ids"]["PMID"]}}</div>
-                  <div>DOI : {{bib[c["ref_id"]]["other_ids"]["DOI"]}}</div>
-                </div>
-              {%endfor%}
-              
-            {%endfor%}
 
 """

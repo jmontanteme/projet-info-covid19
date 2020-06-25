@@ -11,6 +11,18 @@
         <p class="title"> {{article[1]}} </p>
 
 
+        <div class="sug"> 
+          <p class="subtitle">Textes similaires :</p>
+          {% for i in range(5) %}
+                <a class=link href="{{url_for('aff_article', n_article=suggestions[i][0])}}" >{{ suggestions[i][1] }}</a>
+                <p class="details">{{suggestions[i][6]}},{{suggestions[i][3]}}</p>
+                <p class="details">Texte complet : {% if list_full[i] %} Oui {% else %} Non {% endif %}</p>
+          {% endfor %}
+
+        </div>
+
+
+
 
         <div class="text_aff">
         

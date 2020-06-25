@@ -62,7 +62,26 @@ body{
     align-items: stretch;
 
     justify-content: stretch;
-}   
+}  
+
+.text4{
+    display: grid;
+    grid-template-columns:  20% 80% ;
+    grid-template-rows:130px  auto 50px ;
+    grid-template-areas: 
+    "title title"
+    " suggest text "
+    "foot foot";
+
+   
+    grid-row-gap: 10px;
+
+    justify-items: center;
+    align-items: stretch;
+
+    justify-content: stretch;
+}  
+
 
 .text5{
     display: grid;
@@ -81,25 +100,13 @@ body{
 
     justify-content: stretch;
 }
-.text4{
-    display: grid;
-    grid-template-columns:  100% ;
-    grid-template-rows:130px  auto 50px ;
-    grid-template-areas: 
-    "title "
-    "text "
-    "foot";
 
-   
-    grid-row-gap: 10px;
-
-    justify-items: center;
-    align-items: stretch;
-
-    justify-content: stretch;
-}  
-
-
+.sug{
+    grid-area:suggest;
+    background-color: white;
+    width: 90%;
+    padding:5px;
+}
 
 .bib{
     grid-area: ref;
@@ -127,7 +134,7 @@ body{
     grid-area: text;
     background-color: white;
     padding:20px;
-    width:90%;
+    width:95%;
 
 }
 
