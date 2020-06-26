@@ -38,13 +38,16 @@ def search_facteur():
 @app.route("/affichage/<int:n_article>")
 def aff_article(n_article):
     article,full,l_article,biblio=get_article(n_article)
-    #suggestions,list_full=get_suggestion(n_article)
+    suggestions,list_full=get_suggestion(n_article)
     
-    sugg_defaut,_,_,_=get_article(0) 
-    suggestions=[sugg_defaut for i in range(5)]
-    list_full=[True for i in range(5)] 
+    #sugg_defaut,_,_,_=get_article(0) 
+    #suggestions=[sugg_defaut for i in range(5)]
+    #list_full=[True for i in range(5)] 
     return render_template("affichage_article.html",article=article,full=full,l_article=l_article,bib=biblio,suggestions=suggestions,list_full=list_full)
 
+@app.route("/notre_projet")
+def notre_projet():
+    return render_template("notre_projet.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

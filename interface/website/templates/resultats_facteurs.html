@@ -7,18 +7,42 @@
   </head>
   <body>
     
-    <div class="text3">
-      <div class="header"> Résultats </div>
+    <div class="text">
+      <div class= "logo">  
+          <form >
+              <input class="button1" type="button" value="Menu" onclick="window.location.href='/'" />
+          </form>
+      </div>
+      <div class= "box-1">
+          <form >
+              <input class="button1" type="button" value="Notre projet" onclick="window.location.href='/notre_projet'" />
+          </form> </div>
 
-      <div class="resultats">
-        <p class= "text_rs">Vous avez recherché :</p>
-        {% for x in factors %}
-          <div class="text_rs"> {{x}}</div> 
-        {% endfor %}
+      <div class="box-2">
+          <form >
+              <input class="button1" type="button" value="Recherche par mots-clés" onclick="window.location.href='{{url_for('search')}}'" />
+          </form> 
+      </div>
+
+      <div class="box-3">
+          <form >
+              <input class = "button1" type="button" value="Facteurs de risque" onclick="window.location.href='{{url_for('search_facteur')}}'" />
+          </form>
+      </div>
+  
+
+      
+      <div class="corps">
+        <div class="resultats">
+          <p class= "text_rs">Vous avez recherché :</p>
+          {% for x in factors %}
+            <div class="text_rs"> {{x}}</div> 
+          {% endfor %}
+        </div>
       </div>
 
     </div>
 
-    <a class="footer" href="/">Menu</a> 
+  
   </body>
 </html>   

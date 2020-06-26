@@ -7,72 +7,96 @@
   </head>
   <body>
     
-    <div class="text4">
-        <p class="title"> {{article[1]}} </p>
+    <div class="text_grid">
+      <div class= "logo">  
+          <form >
+              <input class="button1" type="button" value="Menu" onclick="window.location.href='/'" />
+          </form>
+      </div>
+      <div class= "box-1">
+          <form >
+              <input class="button1" type="button" value="Notre projet" onclick="window.location.href='/notre_projet'" />
+          </form> </div>
+
+      <div class="box-2">
+          <form >
+              <input class="button1" type="button" value="Recherche par mots-clés" onclick="window.location.href='{{url_for('search')}}'" />
+          </form> 
+      </div>
+
+      <div class="box-3">
+          <form >
+              <input class = "button1" type="button" value="Facteurs de risque" onclick="window.location.href='{{url_for('search_facteur')}}'" />
+          </form>
+      </div>
+
+      
+      
 
 
-        <div class="sug"> 
-          <p class="subtitle">Textes similaires :</p>
-          {% for i in range(5) %}
-                <a class=link href="{{url_for('aff_article', n_article=suggestions[i][0])}}" >{{ suggestions[i][1] }}</a>
-                <p class="details">{{suggestions[i][6]}},{{suggestions[i][3]}}</p>
-                <p class="details">Texte complet : {% if list_full[i] %} Oui {% else %} Non {% endif %}</p>
-          {% endfor %}
+      <div class="sug"> 
+        <p class="subtitle">Textes similaires :</p>
+        {% for i in range(5) %}
+              <a class=link href="{{url_for('aff_article', n_article=suggestions[i][0])}}" >{{ suggestions[i][1] }}</a>
+              <p class="details">{{suggestions[i][6]}},{{suggestions[i][3]}}</p>
+              <p class="details">Texte complet : {% if list_full[i] %} Oui {% else %} Non {% endif %}</p>
+        {% endfor %}
 
-        </div>
-
-
+      </div>
 
 
-        <div class="text_aff">
+
+
+      <div class="text_aff">
+        <p class="subtitle"> {{article[1]}} </p>
+      
+        <p class="subtitle">Date : {{article[6]}}</p>
+        <p class="subtitle">Note : {{article[18]}}</p>
+        <p class="subtitle" >Abstract :</p>
+        <p class="full_text">{{article[2]}}</p>
         
-          <p class="subtitle">Date : {{article[6]}}</p>
-          <p class="subtitle">Note : {{article[13]}}</p>
-          <p class="subtitle" >Abstract :</p>
-          <p class="full_text">{{article[2]}}</p>
+        {% if full%}
+          <p class="subtitle">Texte complet</p>
+            {% for p in l_article%}
+              <div class="full_text">{{p[0]}}</div>
+              {% for cit in p[1]%}
+                <div class="cite">
+                  <div class="ref_title">{{cit[0]}}</div>
+                  <div>{{cit[1]}}</div>
+                  <div>{{cit[2]}}</div>
+                  <div>{{cit[3]}},{{cit[4]}},p {{cit[5]}}</div>
+                  <div>PMID : {{cit[6]}}</div>
+                  <div>DOI : {{cit[7]}}</div>
+                </div>
+              {%endfor%}
+              <div></div>
+
+            {%endfor%}
           
-          {% if full%}
-            <p class="subtitle">Texte complet</p>
-              {% for p in l_article%}
-                <div class="full_text">{{p[0]}}</div>
-                {% for cit in p[1]%}
-                  <div class="cite">
-                    <div class="ref_title">{{cit[0]}}</div>
-                    <div>{{cit[1]}}</div>
-                    <div>{{cit[2]}}</div>
-                    <div>{{cit[3]}},{{cit[4]}},p {{cit[5]}}</div>
-                    <div>PMID : {{cit[6]}}</div>
-                    <div>DOI : {{cit[7]}}</div>
-                  </div>
-                {%endfor%}
-                <div></div>
 
-              {%endfor%}
+          <div class="bib">
+            <p class="subtitle">Bibliographie :</p>
             
-
-            <div class="bib">
-              <p class="subtitle">Bibliographie :</p>
+            {% for article_ref in bib.keys()%}
+                      
+              <p class="ref_title">{{bib[article_ref]["title"]}} </p>
+              <div>{%for aut in bib[article_ref]["authors"] %}
+                {{aut["first"]}} {{aut["last"]}}, 
+              {%endfor%}</div>
+              <div>{{bib[article_ref]["year"]}}</div>
+              <div>{{bib[article_ref]["venue"]}}, {{bib[article_ref]["volume"]}},p {{bib[article_ref]["pages"]}}</div>
+              <div>PMID : {{bib[article_ref]["other_ids"]["PMID"]}}</div>
+              <div>DOI : {{bib[article_ref]["other_ids"]["DOI"]}}</div>
               
-              {% for article_ref in bib.keys()%}
-                        
-                <p class="ref_title">{{bib[article_ref]["title"]}} </p>
-                <div>{%for aut in bib[article_ref]["authors"] %}
-                  {{aut["first"]}} {{aut["last"]}}, 
-                {%endfor%}</div>
-                <div>{{bib[article_ref]["year"]}}</div>
-                <div>{{bib[article_ref]["venue"]}}, {{bib[article_ref]["volume"]}},p {{bib[article_ref]["pages"]}}</div>
-                <div>PMID : {{bib[article_ref]["other_ids"]["PMID"]}}</div>
-                <div>DOI : {{bib[article_ref]["other_ids"]["DOI"]}}</div>
-                
-              {%endfor%}
+            {%endfor%}
 
-          {%endif%}
-        </div>
+        {%endif%}
+      </div>
 
 
     </div>
         
-      <a class="footer" href="/">Menu</a> 
-    </div>
+      
+   
   </body> 
 </html>

@@ -4,10 +4,7 @@ import json
 
 from fonctions import *
 
-meta_df=pd.read_csv("metadata_processed.csv")
-meta_df2=pd.read_csv("metadata_processed_reduced.csv")
-
-
+meta_df=pd.read_csv("metadata_full.csv")
 
 def fonction_search(keywords):
     give_note(meta_df,keywords)
@@ -19,8 +16,8 @@ def fonction_search(keywords):
     return top,list_full
 
 def search_factors(factors):#factors est une liste
-    give_note_factor(meta_df2,factors)
-    top=meta_df2.sort_values(by=["note_totale"],ascending=False)[0:5].values.tolist()   
+    give_note_factor(meta_df,factors)
+    top=meta_df.sort_values(by=["note_totale"],ascending=False)[0:5].values.tolist()   
     list_full=[True for i in range(5)] 
     for i in range(5):
         if str(top[i][7])=="nan":
@@ -47,14 +44,14 @@ def get_article(n_article):
 
 def get_suggestion(n_article):
     article=meta_df.loc[n_article]
-    cluster=article["cluster"]
-    meta_df_cluster=meta_df.loc[meta_df["cluster"]==cluster]
-    suggestions=meta_df_cluster.sort_values(by=["note_ref"],ascending=False)[0:10].values.tolist()
-    list_full=[True for i in range(5)] 
-    for i in range(5):
-        if str(suggestions[i][7])=="nan":
-            list_full[i]=False
-    return suggestions,list_full
+    suggestions=article[[f"suggestion_{i}" for i in range(5)]].tolist()
+    Sug=[]
+    list_full=[]
+    for s_indice in suggestions:
+        article,full,_,_=get_article(s_indice)
+        Sug.append(article)
+        list_full.append(full)
+    return Sug,list_full
 
 #les articles sont décrits sous la forme :
 # 0 numéro article (inutile)
@@ -64,16 +61,18 @@ def get_suggestion(n_article):
 # 4 title_process 	
 # 5 abstract_process 	
 # 6 date 	
-# 7 path 	
-# 8 note_date 	
-# 9 nb_ref_linked 	
-# 10 note_ref 	
-# 11 freq_title 	
-# 12 freq_abstract 	
-# 13 note
+# 7 path 	 	
+# 8 nb_ref_linked 	
+# 9 note_ref 	
+# 10 freq_title 	
+# 11 freq_abstract 	
+# 12 - 16 suggestion_i
+# note_factors 17 - 29
 """
 article,full,l_article,biblio=get_article(59825)
 
 print(l_article)
 
+
+print(meta_df.columns)
 """
