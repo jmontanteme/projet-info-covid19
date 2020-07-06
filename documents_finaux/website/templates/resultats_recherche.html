@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CORD19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  </head>
+  <body>
+    <div class="text">
+      <div class= "logo">  
+          <form >
+              <input class="button1" type="button" value="Menu" onclick="window.location.href='/'" />
+          </form>
+      </div>
+      <div class= "box-1">
+          <form >
+              <input class="button1" type="button" value="Notre projet" onclick="window.location.href='/notre_projet'" />
+          </form> </div>
+
+      <div class="box-2">
+          <form >
+              <input class="button1" type="button" value="Recherche par mots-clés" onclick="window.location.href='{{url_for('search')}}'" />
+          </form> 
+      </div>
+
+      <div class="box-3">
+          <form >
+              <input class = "button1" type="button" value="Facteurs de risque" onclick="window.location.href='{{url_for('search_facteur')}}'" />
+          </form>
+      </div>
+    
+
+      <div class="corps">
+        <div class="search_box_facteur">
+          <p class="subtitle">Vous avez recherché : {{ keywords }}</p>
+          {% for i in range(5) %}
+                <a class=link href="{{url_for('aff_article', n_article=top[i][0])}}" >{{ top[i][1] }}</a>
+                <p class="details">{{top[i][6]}},{{top[i][3]}}</p>
+                <p class="details">Texte complet : {% if list_full[i] %} Oui {% else %} Non {% endif %}</p>
+          {% endfor %}
+        </div> 
+      </div>
+        
+
+         
+    </div>
+  </body>
+</html>   

@@ -1,0 +1,275 @@
+body{
+
+    background-color: black;
+    color :black;
+
+    font-family:Arial, Helvetica, sans-serif;
+    
+
+    
+}
+
+
+.text{
+    width: 100%;
+    background-color: white;
+    display: grid;
+    grid-template-columns:  25% 25% 25% 25% ;
+    grid-template-rows:30px auto ;
+    grid-template-areas: 
+    " logo title1 title2 title3 "
+    "image image image image";
+
+    justify-items: stretch;
+    align-items: stretch;
+
+    justify-content: stretch;
+}    
+
+.text_grid{
+    width: 100%;
+    background-color: white;
+    display: grid;
+    grid-template-columns:  25% 25% 25% 25% ;
+    grid-template-rows:30px auto ;
+    grid-template-areas: 
+    " logo title1 title2 title3 "
+    "suggestions texte texte texte";
+
+    justify-items: stretch;
+    align-items: stretch;
+
+    justify-content: stretch;
+}    
+
+
+
+.image{
+    grid-area: image;
+    max-width: 1500px;
+    max-height: 1000px;
+    height:auto;
+    
+}
+
+.projet{
+    grid-area: image;
+    background-image: url("fond2.jpg");
+    
+    
+
+}
+
+.projet_texte{
+    background-color: rgb(236,240,241);
+    padding:100px;
+    padding-top:50px;
+    margin-left: 150px;
+    margin-right: 150px;
+    
+}
+
+.corps{
+    grid-area: image;
+    background-image:url("fond2.jpg");
+    padding-left: 200px;
+    align-self  : center;
+}
+
+
+
+.sug{
+    grid-area:suggestions;
+    background-color:rgb(236,240,241);
+    width: 90%;
+    padding:30px;
+    padding-top:200px;
+}
+
+.bib{
+    grid-area: ref;
+    background-color: white;
+    padding:20px;
+    width:90%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.cite{
+    font-size: 10px;
+    background-color:rgb(236,240,241);
+    width: 30%;
+    margin-left: 300px;
+    margin-right:600px;
+    padding:30px;
+}
+
+.ref_title{
+    color:midnightblue;
+    font-weight: bold;
+   
+}
+.text_aff{
+    grid-area: texte;
+    background-color: white;
+    padding:50px;
+    width:90%;
+
+}
+
+.full_text{
+    text-align: justify;
+    font-size: 18px;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-indent: 50px;
+    line-height: 1.7;
+    
+}
+.resultats{
+    width:80%;
+    background-color: white;
+    padding:20px;
+
+
+}
+
+.search_box_facteur{
+    background-color:rgb(236,240,241);
+    width: 50%;
+    
+    padding:30px;
+    padding-left:200px;
+    padding-right:200px;
+    font-size: 18px;
+    line-height: 2;
+}   
+
+.search_box_barre{
+    background-color:rgb(236,240,241);
+    width: 50%;
+    height:300px;
+    padding:30px;
+    padding-left:200px;
+    padding-right:200px;
+    font-size: 18px;
+    line-height: 2;
+    margin-top:100px;
+    margin-bottom: 230px;
+}   
+
+.barre{
+    
+    text-align: center;
+    
+    
+}
+
+.rechercher{
+    text-align: center;
+    
+}
+
+.text_sb{
+    color:black;
+    font-size: 25px;
+    text-align: center;
+    
+}
+
+.text_re{
+    color:black;
+    font-size: 20px;
+    text-align: left;
+    padding:10px;
+}
+
+
+
+.box-1{
+  
+    grid-area: title1;
+    text-align: center;
+    width:100%;
+    background-color: white;
+    
+    color: black; 
+    
+
+}
+
+.box-2{
+    grid-area: title2;
+   
+    text-align: center;
+    width: 100%;
+    background-color: white;
+}
+
+.box-3{
+    grid-area: title3;
+   
+    text-align: center;
+    width: 100%;
+    background-color: white;
+}
+
+.logo{
+    grid-area:logo;
+    background-color: white;
+    width: 100%;
+}
+
+
+.button1 {
+    width: 100%;
+    background-color: black; 
+    color: black; 
+    border: 2px solid black;
+    transition-duration: 0.4s;
+    font-size: 15px;
+    color:white;
+    padding-top: 5px;
+
+    padding-bottom: 5px;
+
+}
+  
+.button1:hover {
+  background-color: white; 
+  color:black;
+  
+}
+
+
+.title{
+    grid-area: title;
+    background-color: white;
+    color: midnightblue;
+    font-size: 25px;
+    width: 90%;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:10px ;
+   
+    text-align: center;
+}
+
+
+.subtitle{
+    font-size: 24px;
+    color: midnightblue;
+}
+.link{
+    font-size: 20px;
+    color: midnightblue;
+}
+.details{
+    font-size: 14px;
+
+}
+
+
+
+
+

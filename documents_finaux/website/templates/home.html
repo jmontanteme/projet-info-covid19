@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CORD19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  </head>
+  <body>
+    <div class="text">
+
+        <div class= "logo">  
+          <form >
+            <input class="button1" type="button" value="Menu" onclick="window.location.href='/'" />
+          </form>
+        </div>
+        <div class= "box-1">
+          <form >
+            <input class="button1" type="button" value="Notre projet" onclick="window.location.href='/notre_projet'" />
+        </form> </div>
+
+        <div class="box-2">
+          <form >
+              <input class="button1" type="button" value="Recherche par mots-clés" onclick="window.location.href='{{url_for('search')}}'" />
+          </form> 
+        </div>
+
+        <div class="box-3">
+         <form >
+              <input class = "button1" type="button" value="Facteurs de risque" onclick="window.location.href='{{url_for('search_facteur')}}'" />
+          </form>
+        </div>
+        
+        <img class="image" src="/static/css/home_page.png">
+        
+        
+      </div>
+  </body>
+</html>

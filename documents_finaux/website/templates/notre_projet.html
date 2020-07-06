@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CORD19 - Notre projet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  </head>
+  <body>
+    <div class="text">
+        <div class= "logo">  
+            <form >
+                <input class="button1" type="button" value="Menu" onclick="window.location.href='/'" />
+            </form>
+        </div>
+        <div class= "box-1">
+            <form >
+                <input class="button1" type="button" value="Notre projet" onclick="window.location.href='/notre_projet'" />
+            </form> </div>
+
+        <div class="box-2">
+            <form >
+                <input class="button1" type="button" value="Recherche par mots-clés" onclick="window.location.href='{{url_for('search')}}'" />
+            </form> 
+        </div>
+
+        <div class="box-3">
+            <form >
+                <input class = "button1" type="button" value="Facteurs de risque" onclick="window.location.href='{{url_for('search_facteur')}}'" />
+            </form>
+        </div>
+
+        
+        <div class="projet">
+            <div class="projet_texte">
+            <p class="subtitle">I ) Le contexte</p>
+            <p class="full_text">
+L’objectif est de répondre à l’appel de médecins et de chercheurs concernant les difficultés à naviguer dans le nombre croissant de publications scientifiques traitant des coronavirus et en particulier du covid 19. Un challenge a été lancé aux data scientists. L’objectif donné est de créer des outils facilitant la tâche des chercheurs afin de faire avancer plus efficacement la recherche dans le domaine.
+</p>
+<a class="full_text" href="https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge">
+ https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge
+</a>
+<p class="full_text">
+Une base de données contenant un nombre toujours plus important de publications (complète ou contenant uniquement un abstract) est mise à disposition ainsi que les métadonnées les décrivant.
+</p>
+<p class="full_text">
+Le sujet est particulièrement large et très peu guidé. Il a été proposé par un médecin mais nous avons pris la décision de ne pas accaparer de son temps, qui est précieux dans la situation actuelle. Il nous a fallu du temps pour définir clairement les objectifs et ce que nous voulions apporter.
+</p>
+<p class="subtitle">
+II) Le sujet
+</p>
+<p class="full_text">
+Notre objectif est de développer un outil de recherche permettant au chercheur de mieux appréhender les facteurs de risque liés au Covid. Pour cela nous voulons mettre en place un moteur de recherche d’article ainsi qu’un système de suggestions pour pouvoir approfondir le sujet traité dans un article. Enfin nous avons l’ambition de proposer une analyse automatique du texte afin de donner un aperçu rapide des conclusions tirées par l’article.
+</p>
+<p class="subtitle">
+III) Notre avancement
+</p>
+<p class="full_text">
+Nous en sommes à la réalisation du moteur de recherche, nous nous basons sur différents critères qu’il faut réussir à évaluer à travers différentes sources qui ne sont pas toujours complètes. Nous avons procédé à un nettoyage des données pour mieux les traiter.
+Nous avons commencé à nous informer sur les différentes techniques pouvant être utilisées pour suggérer un article à partir d’un autre.
+</p>
+<p class="subtitle">
+IV) Les choix techniques
+</p>
+<p class="full_text">
+Nous pensons faire l’interface à l’aide de programmation web avec les algorithmes de traitement des données en python. Nous avons pour idée d’utiliser le même principe que ce qui a été présenté en cours de “Programmes Coopérants”.
+Pour la recherche, la suggestion et l’analyse des articles nous utilisons principalement nltk (un bibliothèque donnant accès à des outils de NLP). Des techniques telles que la tokenization, la lemmatisation ainsi que la vectorisation sont utilisées.
+</p>
+<p class="full_text">
+La partie concernant l’analyse du texte est la plus difficile nous pensons. Elle pourrait se faire avec des techniques de “sentiment analysis” mais cela relève de l’apprentissage supervisé. Nous ne disposons pas ici d’articles étiquetés pour l'entraînement. Nous voulons utiliser l’aspect codifié des articles scientifiques pour les analyser de façon plus élémentaire, sans avoir recours à des outils trop évolués.
+Partie Notation : utilisation de la bibliothèque Spacy
+Le but de cette partie a été de poursuivre la notation des articles. En effet, il nous a paru judicieux d’affecter une note pour le critères suivants : 
+présence d’un champ lexical (dans notre cas, un ensemble d’expressions qui décrivent un type de pathologie liée à un facteur de risque), en fréquence, dans un texte, un titre ou un abstract
+diffusivité d’un champ lexical dans un texte
+</p>
+<p class="full_text">
+Pour définir la diffusivité, nous sommes partis du postulat qu’un article qui traitant d’un thème fixé dans un seul paragraphe est moins intéressant qu’un article qui en discute dans tout le corps de son texte. Le problème est que ce genre de différence n’est pas forcément visible par un calcul de fréquence. Il faut donc s’intéresser non seulement aux occurrences des expressions mais aussi à leur position. L’idée serait donc d’évaluer la diffusivité d’un champ lexical dans un texte par son écart-type à la position moyenne, rapporté au nombre de mots du texte. 
+Implémenter cette idée en Python avec les bibliothèques de base (Numpy, Pandas…) s’est avéré très complexe et long. Un recours à des bibliothèques spécialisées dans le “Natural Language Processing” (NLP) s’imposait. Or, le site Kaggle, sur lequel se trouvaient le dataset d’articles, proposait également des cours sous forme de notebook pour maîtriser les bases dans plusieurs domaines, dont le NLP.
+</p>
+<p class="full_text">
+J’ai décidé de suivre une introduction à la bibliothèque Spacy. Cette bibliothèque propose de nombreux types de traitement de textes très intéressants mais que nous n’avons pas tous eu l’occasion d’utiliser.
+</p>
+<p class="full_text">
+ Figure 1 : Architecture générale de la bibliothèque (source : https://spacy.io/api )
+</p>
+<p class="full_text">
+Nous avons choisi d’utiliser :
+d’une part les fonctions de traitement de texte pour l’anglais. Celles-ci permettent d’effectuer des opérations classiques de “tokenisation”, mais aussi de “lemmatisation”
+D’utiliser la classe “PhraseMatcher” qui permet de rechercher la présence d’un mot ou d’un groupe de mot dans un texte tokenisé
+</p>
+<p class="full_text">
+
+Une première étape fut de déterminer, pour chaque facteur de risque, un groupe pertinent et exhaustif d’expressions en lien. Pour cela, nous avons eu recours à des encyclopédies en ligne qui fournissent des listes de pathologie par type. Cette étape étant importante pour éviter erreurs et oublis, un médecin a validé nos groupes. Pour choisir les facteurs de risque, nous nous sommes basés sur ceux proposés par Kaggle, qui nous semblaient suffisants.
+</p>
+<p class="full_text">
+C’est donc avec sur la base de 13 champs lexicaux correspondant à 13 facteurs de risque que nous avons noté les articles. Le principe est le suivant : chaque article reçoit une note différente pour chaque facteur; plus la note est élevée, plus le facteur est traité dans l’article.
+</p>
+<p class="full_text">
+On constate ainsi qu’il y a 2 grandes étapes : 
+effectuer un pré-traitement des données ET des champs lexicaux 
+noter chaque article
+</p>
+<p class="full_text">
+Ces deux grandes étapes ont été décomposées en 4 classes. On peut justifier l’utilisation de classes par le fait qu’elle permettaient de regrouper plusieurs fonctions dont le but était d’effectuer une grande étape (calcul d’une note, prétraitement…).
+
+        
+    </div>
+    </div>   
+
+        
+    </div>
+  </body>
+</html>   
